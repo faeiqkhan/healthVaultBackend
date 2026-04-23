@@ -1,3 +1,33 @@
 spring:
   application:
     name: HealthVault
+  datasource:
+    url: JDBC:postgresql://localhost:5433/health_db?options=-c%20TimeZone=Asia/Kolkata
+    username: admin
+    password: admin
+
+  web:
+    mvc:
+      cors:
+        mappings:
+          "/**":
+            allowed-origins: "http://localhost:5173"
+            allowed-methods: GET, POST, PUT, DELETE, OPTIONS
+            allowed-headers: "*"
+            allow-credentials: true
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      JDBC:
+        time_zone: UTC
+
+  Jackson:
+    time-zone: Asia/Kolkata
+    serialization:
+      fail-on-empty-beans: false
+
+server:
+  port: 8080
